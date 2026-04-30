@@ -13,11 +13,15 @@ export const useReservationStore = create((set) => ({
   },
 
   nextScreen: () => {
-    set((state) => ({ currentScreen: state.currentScreen + 1 }));
+    set((state) => ({
+      currentScreen: state.currentScreen + 1,
+    }));
   },
 
   previousScreen: () => {
-    set((state) => ({ currentScreen: state.currentScreen - 1 }));
+    set((state) => ({
+      currentScreen: state.currentScreen - 1,
+    }));
   },
 
   updateData: (newData) => {
