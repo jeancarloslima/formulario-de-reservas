@@ -5,6 +5,8 @@ import ProgressBar from "./components/assets/ProgressBar";
 import ButtonsBar from "./components/assets/ButtonsBar";
 import StepDates from "./components/pages/StepDates";
 import StepRooms from "./components/pages/StepRooms";
+import StepPersonalData from "./components/pages/StepPersonalData";
+import StepConfirmation from "./components/pages/StepConfirmation";
 
 function App() {
   const currentScreen = useReservationStore((state) => state.currentScreen);
@@ -15,6 +17,10 @@ function App() {
         return <StepDates />;
       case 2:
         return <StepRooms />;
+      case 3:
+        return <StepPersonalData />;
+      case 4:
+        return <StepConfirmation />;
       default:
         return <StepDates />;
     }
