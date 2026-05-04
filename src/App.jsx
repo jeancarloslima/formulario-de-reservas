@@ -1,5 +1,4 @@
 import "./App.css";
-import { Button } from "@/components/ui/button";
 import { useReservationStore } from "./components/contexts/useReservationStore";
 import ProgressBar from "./components/assets/ProgressBar";
 import ButtonsBar from "./components/assets/ButtonsBar";
