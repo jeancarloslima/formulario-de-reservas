@@ -30,7 +30,7 @@ function App() {
       <div className="bg-white rounded shadow-md w-full max-w-[600px] h-[600px] px-8 py-12 mx-auto flex flex-col items-center justify-between gap-8">
         <ProgressBar />
 
-        <div className="w-full max-w-[400px]">{renderStep()}</div>
+        <div className="w-full max-w-[400px] h-[300px]">{renderStep()}</div>
 
         <ButtonsBar />
       </div>

@@ -4,15 +4,21 @@ import {
   FieldGroup,
   FieldLabel,
   FieldLegend,
-  FieldSeparator,
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { useReservationStore } from "../../contexts/useReservationStore";
 
 export default function StepPersonalData() {
+    const updateData = useReservationStore((state) => state.updateData);
+
+    const handleSubmit = (e) => {
+        console.log(e)
+    }
+
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <FieldGroup>
                     <FieldSet>
                         <FieldLegend>Personal Data</FieldLegend>
