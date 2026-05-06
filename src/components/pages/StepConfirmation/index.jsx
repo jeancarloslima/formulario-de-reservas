@@ -5,8 +5,8 @@ export default function StepConfirmation() {
   const { reservationData, nextScreen, previousScreen } = useReservationStore();
 
   return (
-    <div className="w-full h-full flex flex-col justify-between">
-      <div className="flex flex-col gap-6">
+    <div className="w-full h-full flex flex-col justify-between items-center">
+      <div className="flex flex-col gap-6 w-full max-w-[400px]">
         <h2 className="font-bold text-center text-green-500">
           Confirm the data
         </h2>
