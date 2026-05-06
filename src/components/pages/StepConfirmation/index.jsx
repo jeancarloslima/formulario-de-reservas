@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { format } from "date-fns";
 import { useReservationStore } from "../../contexts/useReservationStore";
 
 export default function StepConfirmation() {
@@ -12,12 +13,12 @@ export default function StepConfirmation() {
         </h2>
         <div className="flex justify-between">
           <h2 className="font-bold">Check-in:</h2>
-          <p>{reservationData.checkIn}</p>
+          <p>{format(reservationData.checkIn, "PPP")}</p>
         </div>
 
         <div className="flex justify-between">
           <h2 className="font-bold">Check-out:</h2>
-          <p>{reservationData.checkOut}</p>
+          <p>{format(reservationData.checkOut, "PPP")}</p>
         </div>
 
         <div className="flex justify-between">
