@@ -12,10 +12,9 @@ import { useReservationStore } from "../../contexts/useReservationStore";
 import { useState } from "react";
 
 export default function StepPersonalData() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const { nextScreen, previousScreen, updateData } =
-    useReservationStore();
+    const { reservationData, nextScreen, previousScreen, updateData } = useReservationStore();
+    const [name, setName] = useState(reservationData.name || "");
+    const [email, setEmail] = useState(reservationData.email || "");
 
   const handleSubmit = (e) => {
     e.preventDefault();

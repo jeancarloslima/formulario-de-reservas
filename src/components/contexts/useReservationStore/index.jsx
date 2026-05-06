@@ -1,12 +1,11 @@
 import { create } from "zustand";
 
 export const useReservationStore = create((set) => ({
-  currentScreen: 3,
+  currentScreen: 4,
 
   reservationData: {
     checkIn: null,
     checkOut: null,
-    guests: 1,
     roomId: null,
     name: "",
     email: "",
