@@ -3,6 +3,8 @@ import { useReservationStore } from "../../contexts/useReservationStore";
 export default function StepConfirmation() {
   const reservationData = useReservationStore((state) => state.reservationData);
 
+  console.log(reservationData)
+
   return (
     <div className="w-full flex flex-col gap-6">
       <h2 className="font-bold text-center text-green-500">Confirm the data</h2>
