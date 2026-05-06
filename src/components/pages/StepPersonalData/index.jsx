@@ -12,14 +12,15 @@ import { useReservationStore } from "../../contexts/useReservationStore";
 import { useState } from "react";
 
 export default function StepPersonalData() {
-    const { reservationData, nextScreen, previousScreen, updateData } = useReservationStore();
-    const [name, setName] = useState(reservationData.name || "");
-    const [email, setEmail] = useState(reservationData.email || "");
+  const { reservationData, nextScreen, previousScreen, updateData } =
+    useReservationStore();
+  const [name, setName] = useState(reservationData.name || "");
+  const [email, setEmail] = useState(reservationData.email || "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    updateData({ name, email })
+    updateData({ name, email });
     nextScreen();
   };
 
@@ -38,17 +39,30 @@ export default function StepPersonalData() {
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="name">Name</FieldLabel>
-                <Input id="name" placeholder="John Doe" required value={name} onChange={(e) => setName(e.target.value)} />
+                <Input
+                  id="name"
+                  placeholder="John Doe"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </Field>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" placeholder="johndoe@gmail.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                <Input
+                  id="email"
+                  placeholder="johndoe@gmail.com"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </Field>
             </FieldGroup>
           </FieldSet>
         </FieldGroup>
         <div className="w-full max-w-[450px] flex justify-between">
           <Button
+            type="button"
             className={`w-[120px] bg-black text-white cursor-pointer hover:bg-gray-700`}
             onClick={previousScreen}
           >

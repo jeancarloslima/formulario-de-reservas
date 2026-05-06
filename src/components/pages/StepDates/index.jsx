@@ -11,23 +11,22 @@ import { format } from "date-fns";
 
 export default function StepDates() {
   const { reservationData, nextScreen, updateData } = useReservationStore();
-  const [dateCheckIn, setDateCheckIn] = reservationData.checkIn
-    ? useState(Date(reservationData.checkIn))
-    : useState();
-  const [dateCheckOut, setDateCheckOut] = reservationData.checkOut
-    ? useState(Date(reservationData.checkOut))
-    : useState();
+  const [dateCheckIn, setDateCheckIn] = useState(
+    reservationData.checkIn ? new Date(reservationData.checkIn) : undefined,
+  );
+  const [dateCheckOut, setDateCheckOut] = useState(
+    reservationData.checkOut ? new Date(reservationData.checkOut) : undefined,
+  );
 
   const handleDatesChoose = () => {
     if (!dateCheckIn || !dateCheckOut) {
       alert("Choose the dates");
     } else if (dateCheckIn >= dateCheckOut) {
-      alert("The check-out date can't be the same or inferior to the check-in date");
+      alert(
+        "The check-out date can't be the same or inferior to the check-in date",
+      );
     } else {
-      const checkIn = format(dateCheckIn, "PPP");
-      const checkOut = format(dateCheckOut, "PPP");
-
-      updateData({ checkIn, checkOut });
+      updateData({ checkIn: dateCheckIn, checkOut: dateCheckOut });
       nextScreen();
     }
   };
