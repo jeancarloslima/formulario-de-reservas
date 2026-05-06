@@ -6,48 +6,92 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useState } from "react";
+import { useReservationStore } from "../../contexts/useReservationStore";
+import { format } from "date-fns";
 
 export default function StepDates() {
-  const [date, setDate] = useState();
+  const { reservationData, nextScreen, updateData } = useReservationStore();
+  const [dateCheckIn, setDateCheckIn] = reservationData.checkIn
+    ? useState(Date(reservationData.checkIn))
+    : useState();
+  const [dateCheckOut, setDateCheckOut] = reservationData.checkOut
+    ? useState(Date(reservationData.checkOut))
+    : useState();
+
+  const handleDatesChoose = () => {
+    if (!dateCheckIn || !dateCheckOut) {
+      alert("Choose the dates");
+    } else if (dateCheckIn >= dateCheckOut) {
+      alert("The check-out date can't be the same or inferior to the check-in date");
+    } else {
+      const checkIn = format(dateCheckIn, "PPP");
+      const checkOut = format(dateCheckOut, "PPP");
+
+      updateData({ checkIn, checkOut });
+      nextScreen();
+    }
+  };
 
   return (
-    <div className="flex justify-between">
-      <div className="flex flex-col items-center gap-4">
-        <h2>Pick the Check-in date:</h2>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button className="w-[120px] cursor-pointer">
-              {date ? date : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              defaultMonth={date}
-            />
-          </PopoverContent>
-        </Popover>
+    <div className="h-full flex flex-col justify-between items-center">
+      <div className="w-full max-w-[400px] flex justify-between">
+        <div className="flex flex-col items-center gap-4">
+          <h2>Pick the Check-in date:</h2>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button className="w-[140px] bg-blue-500 hover:bg-blue-400 cursor-pointer rounded-sm">
+                {dateCheckIn ? (
+                  format(dateCheckIn, "PPP")
+                ) : (
+                  <span>Pick a date</span>
+                )}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={dateCheckIn}
+                onSelect={setDateCheckIn}
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
+
+        <div className="flex flex-col items-center gap-4">
+          <h2>Pick the Check-out date:</h2>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button className="w-[140px] bg-blue-500 hover:bg-blue-400 cursor-pointer rounded-sm">
+                {dateCheckOut ? (
+                  format(dateCheckOut, "PPP")
+                ) : (
+                  <span>Pick a date</span>
+                )}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={dateCheckOut}
+                onSelect={setDateCheckOut}
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
 
-      <div className="flex flex-col items-center gap-4">
-        <h2>Pick the Check-out date:</h2>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button className="w-[120px] cursor-pointer">
-              {date ? date : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              defaultMonth={date}
-            />
-          </PopoverContent>
-        </Popover>
+      <div className="w-full max-w-[450px] flex justify-between">
+        <Button
+          className={`w-[120px] bg-gray-500 text-white pointer-events-none`}
+        >
+          PREVIOUS
+        </Button>
+        <Button
+          className={`w-[120px] cursor-pointer bg-blue-500 hover:bg-blue-400`}
+          onClick={handleDatesChoose}
+        >
+          NEXT
+        </Button>
       </div>
     </div>
   );

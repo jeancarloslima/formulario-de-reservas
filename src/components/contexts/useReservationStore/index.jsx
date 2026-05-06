@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useReservationStore = create((set) => ({
-  currentScreen: 2,
+  currentScreen: 1,
 
   reservationData: {
     checkIn: null,

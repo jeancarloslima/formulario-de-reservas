@@ -50,7 +50,7 @@ export default function StepRooms() {
           className={`w-[120px] cursor-pointer bg-blue-500 hover:bg-blue-400`}
           onClick={handleRoomChoose}
         >
-          CONFIRM
+          NEXT
         </Button>
       </div>
     </div>
