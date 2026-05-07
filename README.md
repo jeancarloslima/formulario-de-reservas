@@ -2,6 +2,8 @@
 
 Um sistema de reserva de hotel multi-etapas desenvolvido para oferecer uma experiência de utilizador fluida, utilizando as tecnologias mais modernas do ecossistema React.
 
+<img width="1040" height="789" alt="formulario-reservas-print" src="https://github.com/user-attachments/assets/e5c260f2-1f17-4d03-9962-8064ec8c6392" />
+
 ## 🚀 Sobre o Projeto
 
 Este projeto é um formulário de reserva funcional que guia o utilizador através de quatro etapas principais: seleção de datas, escolha de quarto, preenchimento de dados pessoais e confirmação final. Foi construído com foco em performance, acessibilidade e gestão de estado eficiente.
