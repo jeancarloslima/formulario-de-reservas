@@ -17,28 +17,39 @@ export default function StepDates() {
   const [dateCheckOut, setDateCheckOut] = useState(
     reservationData.checkOut ? new Date(reservationData.checkOut) : undefined,
   );
+  const [error, setError] = useState("");
 
   const handleDatesChoose = () => {
     if (!dateCheckIn || !dateCheckOut) {
-      alert("Choose the dates");
-    } else if (dateCheckIn >= dateCheckOut) {
-      alert(
+      setError("Choose the dates");
+      return;
+    }
+
+    if (dateCheckIn >= dateCheckOut) {
+      setError(
         "The check-out date can't be the same or inferior to the check-in date",
       );
-    } else {
-      updateData({ checkIn: dateCheckIn, checkOut: dateCheckOut });
-      nextScreen();
+      return;
     }
+
+    setError("");
+    updateData({ checkIn: dateCheckIn, checkOut: dateCheckOut });
+    nextScreen();
   };
 
   return (
     <div className="h-full flex flex-col justify-between items-center">
-      <div className="w-full max-w-[400px] flex justify-between">
-        <div className="flex flex-col items-center gap-4">
+      {error && (
+        <p className="block p-4 bg-red-500 text-white font-medium text-center text-sm rounded absolute top-6">
+          {error}
+        </p>
+      )}
+      <div className="w-full max-w-[400px] flex justify-between gap-6 flex-wrap">
+        <div className="flex flex-col items-center gap-4 w-[180px] mx-auto">
           <h2>Pick the Check-in date:</h2>
           <Popover>
             <PopoverTrigger asChild>
-              <Button className="w-[140px] bg-blue-500 hover:bg-blue-400 cursor-pointer rounded-sm">
+              <Button className="w-[120px] bg-blue-500 hover:bg-blue-400 cursor-pointer rounded-sm">
                 {dateCheckIn ? (
                   format(dateCheckIn, "PPP")
                 ) : (
@@ -56,11 +67,11 @@ export default function StepDates() {
           </Popover>
         </div>
 
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 w-[180px] mx-auto">
           <h2>Pick the Check-out date:</h2>
           <Popover>
             <PopoverTrigger asChild>
-              <Button className="w-[140px] bg-blue-500 hover:bg-blue-400 cursor-pointer rounded-sm">
+              <Button className="w-[120px] bg-blue-500 hover:bg-blue-400 cursor-pointer rounded-sm">
                 {dateCheckOut ? (
                   format(dateCheckOut, "PPP")
                 ) : (
